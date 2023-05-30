@@ -1,0 +1,6 @@
+1	Fresa	1
+2	Cacahuete	2
+3	Papa	3
+4	Tomate	4
+5	Kiwi	5
+6	Limon	6

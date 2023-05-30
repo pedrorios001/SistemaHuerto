@@ -1,0 +1,3 @@
+LOAD DATA LOCAL INFILE './Anexos/DescripImpar.txt' INTO TABLE Huerto.Des_Impares;
+LOAD DATA LOCAL INFILE './Anexos/DescripPar.txt' INTO TABLE Huerto.Des_Pares;
+LOAD DATA LOCAL INFILE './Anexos/Descripcion.txt' INTO TABLE Huerto.Des_Conjunto;

@@ -1,0 +1,124 @@
+CREATE TABLE Frutas
+( ID_Fruta TINYINT(2) UNSIGNED NOT NULL AUTO_INCREMENT,
+  Nombre VARCHAR(30) NOT NULL,
+  Valor TINYINT(2),
+  CONSTRAINT Frutas_Pk PRIMARY KEY (ID_Fruta),
+  INDEX (ID_Fruta)
+);
+
+CREATE TABLE Usuarios
+( ID_Usuario VARCHAR(15) NOT NULL,
+  Nombre VARCHAR(30) NOT NULL,
+  E_Mail VARCHAR(30),
+  Grupo VARCHAR(30),
+  Valido BOOLEAN NOT NULL,
+  Contrasena VARCHAR(15) NOT NULL,
+  CONSTRAINT Usuarios_Pk PRIMARY KEY (ID_Usuario),
+  INDEX (ID_Usuario)
+);
+
+CREATE TABLE Eleccion
+( ID_Eleccion INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  ID_Usuario VARCHAR(15) NOT NULL,
+  ID_Fruta1 TINYINT(2) UNSIGNED NOT NULL,
+  ID_Fruta2 TINYINT(2) UNSIGNED NOT NULL,
+  ID_Fruta3 TINYINT(2) UNSIGNED NOT NULL,
+  ID_Fruta4 TINYINT(2) UNSIGNED NOT NULL,
+  Fecha DATE NOT NULL,
+  CONSTRAINT Eleccion_Pk PRIMARY KEY (ID_Eleccion)
+  CONSTRAINT Eleccion_Fruta1_Fk FOREIGN KEY (ID_Fruta1) REFERENCES Frutas (ID_Fruta)
+  CONSTRAINT Eleccion_Fruta2_Fk FOREIGN KEY (ID_Fruta2) REFERENCES Frutas (ID_Fruta)
+  CONSTRAINT Eleccion_Fruta3_Fk FOREIGN KEY (ID_Fruta3) REFERENCES Frutas (ID_Fruta)
+  CONSTRAINT Eleccion_Fruta4_Fk FOREIGN KEY (ID_Fruta4) REFERENCES Frutas (ID_Fruta)
+);
+
+CREATE TABLE Des_Conjunto
+( ID_Des_Conjunto TINYINT(2) UNSIGNED NOT NULL,
+  Descripcion VARCHAR(800) NOT NULL,
+  CONSTRAINT Des_Conjunto_Pk PRIMARY KEY (ID_Des_Conjunto),
+  INDEX (ID_Des_Conjunto)
+);
+
+CREATE TABLE Des_Pares
+( ID_Des_Par INT UNSIGNED NOT NULL,
+  Saludables VARCHAR(800),
+  Amargos VARCHAR(800),
+  Familiares VARCHAR(800),
+  Transgenicos VARCHAR(800),
+  Vinero VARCHAR(800),
+  CONSTRAINT Des_Pares_Pk PRIMARY KEY (ID_Des_Par),
+  INDEX (ID_Des_Par)
+);
+
+CREATE TABLE Des_Impares
+( ID_Des_Impar INT UNSIGNED NOT NULL,
+  Saludables VARCHAR(800),
+  Amargos VARCHAR(800),
+  Familiares VARCHAR(800),
+  Transgenicos VARCHAR(800),
+  Vinero VARCHAR(800),
+  CONSTRAINT Des_Pares_Pk PRIMARY KEY (ID_Des_Impar),
+  INDEX (ID_Des_Impar)
+);
+
+
+
+No utilizados
+------------------------------------------------------------------------
+
+CREATE TABLE Eleccion
+( ID_Eleccion INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  ID_Usuario VARCHAR(15) NOT NULL,
+  Fecha DATE NOT NULL,
+  CONSTRAINT Eleccion_Pk PRIMARY KEY (ID_Eleccion)
+  CONSTRAINT Eleccion_F2_Fk FOREIGN KEY (ID_Fruta_F) REFERENCES Frutas (ID_Fruta)
+);
+
+CREATE TABLE Eleccion_F
+( ID_Eleccion_F INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  ID_Fruta_F TINYINT(2) UNSIGNED NOT NULL,
+  CONSTRAINT ID_Eleccion_F_Pk PRIMARY KEY (ID_Eleccion_F, ID_Fruta),
+  CONSTRAINT Eleccion_F1_Fk FOREIGN KEY (ID_Eleccion_F) REFERENCES Eleccion (ID_Eleccion),
+  CONSTRAINT Eleccion_F2_Fk FOREIGN KEY (ID_Fruta_F) REFERENCES Frutas (ID_Fruta)
+);
+
+CREATE TABLE Des_Pares
+( ID_Fruta2 TINYINT(2) UNSIGNED NOT NULL,
+  ID_Fruta4 TINYINT(2) UNSIGNED NOT NULL,
+  Saludables VARCHAR(80) NOT NULL,
+  Amargos VARCHAR(80) NOT NULL,
+  Familiares VARCHAR(80) NOT NULL,
+  Transgenicos VARCHAR(80) NOT NULL,
+  Vinero VARCHAR(80) NOT NULL,
+  CONSTRAINT Des_Pares_Pk PRIMARY KEY (ID_Fruta2, ID_Fruta4),
+  CONSTRAINT Des_Pares1_Fk FOREIGN KEY (ID_Fruta2) REFERENCES Frutas (ID_Fruta),
+  CONSTRAINT Des_Pares2_Fk FOREIGN KEY (ID_Fruta4) REFERENCES Frutas (ID_Fruta)
+);
+
+CREATE TABLE Des_Impares
+( ID_Fruta1 TINYINT(2) UNSIGNED NOT NULL,
+  ID_Fruta3 TINYINT(2) UNSIGNED NOT NULL,
+  Saludables VARCHAR(80) NOT NULL,
+  Amargos VARCHAR(80) NOT NULL,
+  Familiares VARCHAR(80) NOT NULL,
+  Transgenicos VARCHAR(80) NOT NULL,
+  Vinero VARCHAR(80) NOT NULL,
+  CONSTRAINT Des_Impares_Pk PRIMARY KEY (ID_Fruta1, ID_Fruta3),
+  CONSTRAINT Des_Impares1_Fk FOREIGN KEY (ID_Fruta1) REFERENCES Frutas (ID_Fruta),
+  CONSTRAINT Des_Impares2_Fk FOREIGN KEY (ID_Fruta3) REFERENCES Frutas (ID_Fruta)
+);
+
+CREATE TABLE Acceso
+( ID_Usuario VARCHAR(15) NOT NULL,
+  Contrasena VARCHAR(15) NOT NULL,
+  CONSTRAINT Privilegios_Pk PRIMARY KEY (ID_Usuario),
+  INDEX (ID_Usuario)
+);
+
+CREATE TABLE Privilegios
+( ID_Usuario VARCHAR(15) NOT NULL,
+  Administrador BOOLEAN NOT NULL,
+  Valido BOOLEAN NOT NULL,
+  CONSTRAINT Privilegios_Pk PRIMARY KEY (ID_Usuario),
+  INDEX (ID_Usuario)
+);
